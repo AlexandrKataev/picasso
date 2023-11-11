@@ -1,6 +1,11 @@
+.loader {
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   display: flex;
-  // height: 280px;
+  padding-right: 20px;
   flex-direction: column;
   max-width: 800px;
 
@@ -46,5 +51,5 @@
   width: 100px;
   height: 40px;
   background-color: #252525;
-  color: rgb(255, 102, 0);
+  color: #ff6600;
 }
