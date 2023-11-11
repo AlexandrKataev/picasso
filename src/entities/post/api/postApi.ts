@@ -26,7 +26,6 @@ export const postApi = createApi({
       },
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          console.log('Запрос постов и установка totalCount');
           const { meta } = await queryFulfilled;
           const totalCount = meta?.response?.headers.get('X-Total-Count');
           totalCount && dispatch(setTotalCount(+totalCount));
