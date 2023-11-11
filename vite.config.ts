@@ -13,13 +13,16 @@ export default defineConfig({
       '@widgets': path.resolve(__dirname, './src/widgets'),
       '@features': path.resolve(__dirname, './src/features'),
       '@entities': path.resolve(__dirname, './src/entities'),
-      '@ui': path.resolve(__dirname, './src/shared/ui'),
+      '@shared': path.resolve(__dirname, './src/shared'),
     },
   },
   css: {
     preprocessorOptions: {
       scss: {
-        includePaths: [path.join(__dirname, '@/shared/styles/_vars.scss')],
+        includePaths: [
+          path.join(__dirname, './src/shared/styles/_vars.scss'),
+          path.join(__dirname, './src/shared/styles/_normalize.scss'),
+        ],
       },
     },
   },
