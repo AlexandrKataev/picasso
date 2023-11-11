@@ -5,12 +5,14 @@ interface PostState {
   posts: Post[] | null;
   limit: number;
   page: number;
+  totalCount: number;
 }
 
 const initialState: PostState = {
   posts: null,
   limit: 10,
   page: 0,
+  totalCount: 0,
 };
 
 export const postSlice = createSlice({
@@ -20,9 +22,16 @@ export const postSlice = createSlice({
     setPosts: (state, action: PayloadAction<Post[]>) => {
       state.posts = action.payload;
     },
+    setTotalCount: (state, action: PayloadAction<number>) => {
+      state.totalCount = action.payload;
+    },
+    nextPage: (state) => {
+      state.page = state.page + 1;
+      console.log(state.page);
+    },
   },
 });
 
 export const postReducer = postSlice.reducer;
 
-export const { setPosts } = postSlice.actions;
+export const { setPosts, setTotalCount, nextPage } = postSlice.actions;

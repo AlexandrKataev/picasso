@@ -27,6 +27,9 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
 
 .readmore {
