@@ -31,4 +31,8 @@
 .body {
   font-size: 1.5rem;
   overflow: hidden;
+
+  &::first-letter {
+    text-transform: uppercase;
+  }
 }
