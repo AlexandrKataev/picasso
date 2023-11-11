@@ -45,7 +45,7 @@ export const HomePage = () => {
             itemData={data}
             itemCount={itemCount}
             itemSize={280}
-            height={windowHeight - 150}
+            height={windowHeight - 170}
             width={830}
             innerElementType="div"
             className={styles.list}
