@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
 import { useAppDispatch } from '@app/store/store';
 import { useEffect, CSSProperties } from 'react';
-import { DotLoader, PulseLoader } from 'react-spinners';
+import { DotLoader } from 'react-spinners';
 
 interface PostListItemProps extends Post {
   // style: any;

@@ -4,8 +4,11 @@ import styles from './home-page-tanstack.module.scss';
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { RootState, useAppDispatch, useAppSelector } from '@app/store/store';
 import { PostListItem, nextPage, useGetPostsQuery } from '@entities/post';
+import { ArrowUpIcon } from '@shared/ui/icons';
+import { useWindowHeight } from '@shared/lib/useWindowHeight';
 
 export const HomePage = () => {
+  const windowHeight = useWindowHeight();
   const dispatch = useAppDispatch();
   const page = useAppSelector((state: RootState) => state.postState.page);
   const totalCount = useAppSelector((state: RootState) => state.postState.totalCount);
@@ -22,7 +25,7 @@ export const HomePage = () => {
     count: hasNextPage ? count + 1 : count,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 367,
-    overscan: 3,
+    overscan: 2,
   });
 
   const items = virtualizer.getVirtualItems();
@@ -31,17 +34,17 @@ export const HomePage = () => {
   return (
     <div className={styles.container}>
       <button
+        className={styles.scrollToStart}
         onClick={() => {
           virtualizer.scrollToIndex(0);
         }}>
-        scroll to the top
+        <ArrowUpIcon />
       </button>
-
       <div
         ref={parentRef}
         className={styles.list}
         style={{
-          height: 700,
+          height: windowHeight - 132,
           width: 750,
           overflowY: 'auto',
           contain: 'strict',

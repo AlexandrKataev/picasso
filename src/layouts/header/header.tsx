@@ -1,5 +1,5 @@
 import styles from './header.module.scss';
 
 export const Header = () => {
-  return <div className={styles.container}>header</div>;
+  return <h1 className={styles.container}>Kataev Alexander Test Project</h1>;
 };
