@@ -1,1 +1,1 @@
-export * from './home-page-tanstack';
+export * from './home-page';
