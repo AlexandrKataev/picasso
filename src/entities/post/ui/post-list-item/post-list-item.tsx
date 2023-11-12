@@ -1,20 +1,16 @@
-import { Post, nextPage } from '@entities/post';
 import styles from './post-list-item.module.scss';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
+
 import { useAppDispatch } from '@app/store/store';
-import { useEffect, CSSProperties } from 'react';
-import { DotLoader } from 'react-spinners';
+import { Post, nextPage } from '@entities/post';
+
+import { Loader } from '@shared/ui';
 
 interface PostListItemProps extends Post {
-  // style: any;
   isItemLoaded: boolean;
 }
-
-const override: CSSProperties = {
-  display: 'block',
-  margin: '0 auto',
-};
 
 export const PostListItem = ({ id, title, body, isItemLoaded }: PostListItemProps) => {
   const navigate = useNavigate();
@@ -32,7 +28,7 @@ export const PostListItem = ({ id, title, body, isItemLoaded }: PostListItemProp
     <div className={styles.container}>
       {!isItemLoaded && (
         <div ref={ref} className={styles.loader}>
-          <DotLoader color="#ff6600" cssOverride={override} />
+          <Loader />
         </div>
       )}
       {isItemLoaded && (

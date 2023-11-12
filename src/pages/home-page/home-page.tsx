@@ -1,17 +1,11 @@
-import { useRef, CSSProperties } from 'react';
+import { useRef } from 'react';
 import styles from './home-page.module.scss';
 
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { RootState, useAppSelector } from '@app/store/store';
 import { PostListItem, useGetPostsQuery } from '@entities/post';
-import { ArrowUpIcon } from '@shared/ui/icons';
-import { useWindowHeight } from '@shared/lib/useWindowHeight';
-import { DotLoader } from 'react-spinners';
-
-const override: CSSProperties = {
-  display: 'block',
-  margin: '70px auto',
-};
+import { ArrowUpIcon, Loader } from '@shared/ui';
+import { useWindowHeight } from '@shared/lib';
 
 export const HomePage = () => {
   const windowHeight = useWindowHeight();
@@ -44,7 +38,13 @@ export const HomePage = () => {
         }}>
         <ArrowUpIcon />
       </button>
-      {isFetching && count === 0 && <DotLoader color="#ff6600" cssOverride={override} />}
+      {isFetching && count === 0 && (
+        <Loader
+          cssOverride={{
+            margin: '70px auto',
+          }}
+        />
+      )}
       <div
         ref={parentRef}
         className={styles.list}

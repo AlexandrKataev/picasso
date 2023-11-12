@@ -1,14 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './post-page.module.scss';
 import { useGetPostByIdQuery } from '@entities/post';
-import { ArrowLeftIcon } from '@shared/ui/icons';
-import { DotLoader } from 'react-spinners';
-import { CSSProperties } from 'react';
-
-const override: CSSProperties = {
-  display: 'block',
-  margin: '70px auto',
-};
+import { ArrowLeftIcon, Loader } from '@shared/ui';
 
 export const PostPage = () => {
   const navigate = useNavigate();
@@ -21,7 +14,13 @@ export const PostPage = () => {
       </button>
       {isError && <h1 className={styles.notFound}> {'Post not founded =('}</h1>}
 
-      {isFetching && <DotLoader color="#ff6600" cssOverride={override} />}
+      {isFetching && (
+        <Loader
+          cssOverride={{
+            margin: '70px auto',
+          }}
+        />
+      )}
       {isSuccess && (
         <div>
           <h1 className={styles.postNumber}>Post #{data?.id}</h1>

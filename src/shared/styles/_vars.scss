@@ -1,4 +1,11 @@
 :root {
-  --color-main: #6e468f;
-  --color-bg-gray: #8d8d8d;
+  --color-main: rgb(255, 102, 0);
+  --color-main-hover: rgb(255, 120, 0);
+  --color-text-white: rgba(255, 255, 255, 0.87);
+  --color-text-gray: hsl(0, 0%, 28%);
+  --color-text-gray-hover: hsl(0, 0%, 31%);
+  --color-bg-gray: hsl(0, 0%, 28%);
+  --color-bg-dark: hsl(0, 0%, 17%);
+  --color-bg-black: hsl(0, 0%, 14%);
+  --color-scroll: hsl(0, 0%, 13%);
 }
