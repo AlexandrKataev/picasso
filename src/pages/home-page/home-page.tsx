@@ -2,7 +2,7 @@ import { useRef, CSSProperties } from 'react';
 import styles from './home-page.module.scss';
 
 import { useVirtualizer } from '@tanstack/react-virtual';
-import { RootState, useAppDispatch, useAppSelector } from '@app/store/store';
+import { RootState, useAppSelector } from '@app/store/store';
 import { PostListItem, useGetPostsQuery } from '@entities/post';
 import { ArrowUpIcon } from '@shared/ui/icons';
 import { useWindowHeight } from '@shared/lib/useWindowHeight';

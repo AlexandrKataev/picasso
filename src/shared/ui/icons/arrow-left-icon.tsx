@@ -1,5 +1,3 @@
-import styles from './arrow-up-icon.module.scss';
-
 export const ArrowLeftIcon = () => {
   return (
     <svg
