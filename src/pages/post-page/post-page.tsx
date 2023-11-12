@@ -7,7 +7,7 @@ import { CommentRow, useGetCommentsQuery } from '@entities/comment';
 export const PostPage = () => {
   const postId = useParams().postId || 1;
   const { data: posts, isFetching, isError, isSuccess } = useGetPostByIdQuery(+postId);
-  const { data: comments = [] } = useGetCommentsQuery(+postId);
+  const { data: comments = [], isFetching: iseFetchingComments } = useGetCommentsQuery(+postId);
   return (
     <div className={styles.container}>
       {isError && <h1 className={styles.notFound}> {'Post not founded =('}</h1>}
@@ -27,8 +27,15 @@ export const PostPage = () => {
             <div className={styles.body}>{posts?.body}</div>
           </div>
           <h3 className={styles.commentBlockTitle}>Commentaries</h3>
+          {iseFetchingComments && (
+            <Loader
+              cssOverride={{
+                margin: '20px auto',
+              }}
+            />
+          )}
           <div className={styles.comments}>
-            {comments.length > 0 && comments?.map((el) => <CommentRow {...el} />)}
+            {comments.length > 0 && comments?.map((el) => <CommentRow {...el} key={el.id} />)}
           </div>
         </div>
       )}

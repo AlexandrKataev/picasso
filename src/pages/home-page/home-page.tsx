@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import styles from './home-page.module.scss';
 
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -9,6 +9,7 @@ import { useWindowSize } from '@shared/lib';
 
 export const HomePage = () => {
   const windowSize = useWindowSize();
+  const [showUp, setShowUp] = useState(false);
 
   const page = useAppSelector((state: RootState) => state.postState.page);
   const totalCount = useAppSelector((state: RootState) => state.postState.totalCount);
@@ -31,13 +32,15 @@ export const HomePage = () => {
 
   return (
     <div className={styles.container}>
-      <button
-        className={styles.scrollToStart}
-        onClick={() => {
-          virtualizer.scrollToIndex(0);
-        }}>
-        <ArrowUpIcon />
-      </button>
+      {showUp && (
+        <button
+          className={styles.scrollToStart}
+          onClick={() => {
+            virtualizer.scrollToIndex(0);
+          }}>
+          <ArrowUpIcon />
+        </button>
+      )}
       {isFetching && count === 0 && (
         <Loader
           cssOverride={{
@@ -78,6 +81,8 @@ export const HomePage = () => {
                   <PostListItem
                     {...data[virtualRow.index]}
                     isItemLoaded={isItemLoaded(virtualRow.index)}
+                    setShowUp={setShowUp}
+                    showUp={showUp}
                   />
                 </div>
               </div>
