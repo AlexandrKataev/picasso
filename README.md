@@ -7,8 +7,6 @@ https://kataev-picasso.vercel.app/
 - Бесконечный скролл
 - Виртуализированный список постов
 
-  ![Farmers Market Finder Demo](demo/scroll.gif)
-
 ## Technologies
 
 - React
@@ -18,6 +16,8 @@ https://kataev-picasso.vercel.app/
 - React Intersection Observer
 - Tanstack Virtual
 - FSD (Feature-Sliced Design)
+
+  ![Farmers Market Finder Demo](demo/scroll.gif)
 
 ## Описание
 
