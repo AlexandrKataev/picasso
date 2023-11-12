@@ -1,4 +1,4 @@
-import styles from './post-list-item.module.scss';
+import styles from './post-row.module.scss';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useInView } from 'react-intersection-observer';
@@ -8,20 +8,13 @@ import { Post, nextPage } from '@entities/post';
 
 import { Loader } from '@shared/ui';
 
-interface PostListItemProps extends Post {
+interface PostRowProps extends Post {
   isItemLoaded: boolean;
   setShowUp: (arg: boolean) => void;
   showUp: boolean;
 }
 
-export const PostListItem = ({
-  id,
-  title,
-  body,
-  isItemLoaded,
-  setShowUp,
-  showUp,
-}: PostListItemProps) => {
+export const PostRow = ({ id, title, body, isItemLoaded, setShowUp, showUp }: PostRowProps) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 

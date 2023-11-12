@@ -3,45 +3,44 @@ import styles from './home-page.module.scss';
 
 import { useVirtualizer } from '@tanstack/react-virtual';
 import { RootState, useAppSelector } from '@app/store/store';
-import { PostListItem, useGetPostsQuery } from '@entities/post';
-import { ArrowUpIcon, Loader } from '@shared/ui';
+import { PostRow, useGetPostsQuery } from '@entities/post';
+import { Loader, ScrollUpButton } from '@shared/ui';
 import { useWindowSize } from '@shared/lib';
 
 export const HomePage = () => {
   const windowSize = useWindowSize();
-  const [showUp, setShowUp] = useState(false);
+  const [showScrollUp, setShowScrollUp] = useState(false);
 
   const page = useAppSelector((state: RootState) => state.postState.page);
   const totalCount = useAppSelector((state: RootState) => state.postState.totalCount);
-  const { data = [], isFetching } = useGetPostsQuery({ limit: 10, start: page * 10 });
-  const count = data.length;
 
-  const hasNextPage = totalCount > count + 1;
+  const { data: posts = [], isFetching } = useGetPostsQuery({ limit: 10, start: page * 10 });
+
+  const postsCount = posts.length;
+  const hasNextPage = totalCount > postsCount + 1;
 
   const parentRef = useRef<HTMLDivElement>(null);
 
   const virtualizer = useVirtualizer({
-    count: hasNextPage ? count + 1 : count,
+    count: hasNextPage ? postsCount + 1 : postsCount,
     getScrollElement: () => parentRef.current,
     estimateSize: () => 367,
     overscan: 2,
   });
 
   const items = virtualizer.getVirtualItems();
-  const isItemLoaded = (index: number) => !hasNextPage || index < data.length;
+  const isItemLoaded = (index: number) => !hasNextPage || index < postsCount;
 
   return (
     <div className={styles.container}>
-      {showUp && (
-        <button
-          className={styles.scrollToStart}
+      {showScrollUp && (
+        <ScrollUpButton
           onClick={() => {
             virtualizer.scrollToIndex(0);
-          }}>
-          <ArrowUpIcon />
-        </button>
+          }}
+        />
       )}
-      {isFetching && count === 0 && (
+      {isFetching && postsCount === 0 && (
         <Loader
           cssOverride={{
             margin: '70px auto',
@@ -78,11 +77,11 @@ export const HomePage = () => {
                 ref={virtualizer.measureElement}
                 className={virtualRow.index % 2 ? 'ListItemOdd' : 'ListItemEven'}>
                 <div style={{ padding: '20px 0' }}>
-                  <PostListItem
-                    {...data[virtualRow.index]}
+                  <PostRow
+                    {...posts[virtualRow.index]}
                     isItemLoaded={isItemLoaded(virtualRow.index)}
-                    setShowUp={setShowUp}
-                    showUp={showUp}
+                    setShowUp={setShowScrollUp}
+                    showUp={showScrollUp}
                   />
                 </div>
               </div>

@@ -27,11 +27,12 @@ export const postApi = createApi({
       },
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          console.log(args);
           const { meta } = await queryFulfilled;
           const totalCount = meta?.response?.headers.get('X-Total-Count');
           totalCount && dispatch(setTotalCount(+totalCount));
-        } catch (error) {}
+        } catch (error) {
+          console.log(args, error);
+        }
       },
     }),
 

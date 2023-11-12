@@ -5,8 +5,8 @@ import { Routing } from './Routing';
 export const App = () => {
   return (
     <>
+      <Header />
       <main>
-        <Header />
         <Routing />
       </main>
     </>
