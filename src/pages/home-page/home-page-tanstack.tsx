@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react';
+import { useRef, useEffect, CSSProperties } from 'react';
 import styles from './home-page-tanstack.module.scss';
 
 import { useVirtualizer } from '@tanstack/react-virtual';
@@ -6,6 +6,12 @@ import { RootState, useAppDispatch, useAppSelector } from '@app/store/store';
 import { PostListItem, nextPage, useGetPostsQuery } from '@entities/post';
 import { ArrowUpIcon } from '@shared/ui/icons';
 import { useWindowHeight } from '@shared/lib/useWindowHeight';
+import { DotLoader } from 'react-spinners';
+
+const override: CSSProperties = {
+  display: 'block',
+  margin: '70px auto',
+};
 
 export const HomePage = () => {
   const windowHeight = useWindowHeight();
@@ -40,6 +46,7 @@ export const HomePage = () => {
         }}>
         <ArrowUpIcon />
       </button>
+      {isFetching && count === 0 && <DotLoader color="#ff6600" cssOverride={override} />}
       <div
         ref={parentRef}
         className={styles.list}

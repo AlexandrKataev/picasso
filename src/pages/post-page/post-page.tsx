@@ -13,16 +13,18 @@ const override: CSSProperties = {
 export const PostPage = () => {
   const navigate = useNavigate();
   const postId = useParams().postId || 1;
-  const { data, isFetching } = useGetPostByIdQuery(+postId);
+  const { data, isFetching, isError, isSuccess } = useGetPostByIdQuery(+postId);
   return (
     <div className={styles.container}>
       <button className={styles.back} onClick={() => navigate('/')}>
         <ArrowLeftIcon />
       </button>
+      {isError && <h1 className={styles.notFound}> {'Post not founded =('}</h1>}
+
       {isFetching && <DotLoader color="#ff6600" cssOverride={override} />}
-      {!isFetching && (
+      {isSuccess && (
         <div>
-          <h1>Post {data?.id}</h1>
+          <h1 className={styles.postNumber}>Post #{data?.id}</h1>
           <div className={styles.post}>
             <h2 className={styles.title}>{data?.title}</h2>
             <div className={styles.body}>{data?.body}</div>
