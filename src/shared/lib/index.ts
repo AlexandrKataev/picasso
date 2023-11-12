@@ -1,1 +1,1 @@
-export * from './useWindowHeight';
+export * from './useWindowSize';

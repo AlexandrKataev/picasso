@@ -5,10 +5,10 @@ import { useVirtualizer } from '@tanstack/react-virtual';
 import { RootState, useAppSelector } from '@app/store/store';
 import { PostListItem, useGetPostsQuery } from '@entities/post';
 import { ArrowUpIcon, Loader } from '@shared/ui';
-import { useWindowHeight } from '@shared/lib';
+import { useWindowSize } from '@shared/lib';
 
 export const HomePage = () => {
-  const windowHeight = useWindowHeight();
+  const windowSize = useWindowSize();
 
   const page = useAppSelector((state: RootState) => state.postState.page);
   const totalCount = useAppSelector((state: RootState) => state.postState.totalCount);
@@ -49,8 +49,8 @@ export const HomePage = () => {
         ref={parentRef}
         className={styles.list}
         style={{
-          height: windowHeight - 132,
-          width: 750,
+          height: windowSize.height - 132,
+          width: windowSize.width > 750 ? 750 : windowSize.width,
           overflowY: 'auto',
           contain: 'strict',
         }}>

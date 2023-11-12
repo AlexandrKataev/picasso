@@ -1,3 +1,38 @@
 .container {
-  height: 80px;
+  position: relative;
+  height: 120px;
+
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@media (width < 700px) {
+  .title {
+    margin-right: 30px;
+    font-size: clamp(0.5rem, 4.5vw, 2rem);
+  }
+  .container {
+    justify-content: end;
+  }
+}
+
+.back {
+  cursor: pointer;
+  position: absolute;
+  top: 30px;
+  left: 20px;
+  background-color: var(--color-bg-dark);
+  color: var(--color-text-gray);
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  border: none;
+  &:hover {
+    color: var(--color-text-gray-hover);
+  }
+  &:active {
+    margin-top: 1px;
+  }
 }

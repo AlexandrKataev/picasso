@@ -1,19 +1,15 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import styles from './post-page.module.scss';
 import { useGetPostByIdQuery } from '@entities/post';
-import { ArrowLeftIcon, Loader } from '@shared/ui';
+import { Loader } from '@shared/ui';
 import { CommentRow, useGetCommentsQuery } from '@entities/comment';
 
 export const PostPage = () => {
-  const navigate = useNavigate();
   const postId = useParams().postId || 1;
   const { data: posts, isFetching, isError, isSuccess } = useGetPostByIdQuery(+postId);
   const { data: comments = [] } = useGetCommentsQuery(+postId);
   return (
     <div className={styles.container}>
-      <button className={styles.back} onClick={() => navigate('/')}>
-        <ArrowLeftIcon />
-      </button>
       {isError && <h1 className={styles.notFound}> {'Post not founded =('}</h1>}
 
       {isFetching && (
