@@ -74,8 +74,7 @@ export const HomePage = () => {
               <div
                 key={virtualRow.key}
                 data-index={virtualRow.index}
-                ref={virtualizer.measureElement}
-                className={virtualRow.index % 2 ? 'ListItemOdd' : 'ListItemEven'}>
+                ref={virtualizer.measureElement}>
                 <div style={{ padding: '20px 0' }}>
                   <PostRow
                     {...posts[virtualRow.index]}
