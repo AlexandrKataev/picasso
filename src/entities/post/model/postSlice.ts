@@ -27,7 +27,6 @@ export const postSlice = createSlice({
     },
     nextPage: (state) => {
       state.page = state.page + 1;
-      console.log(state.page);
     },
   },
 });

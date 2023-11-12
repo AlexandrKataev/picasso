@@ -14,6 +14,7 @@ export const postApi = createApi({
           _limit: limit,
           _start: start,
         },
+        keepUnusedDataFor: 600,
       }),
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;
@@ -26,7 +27,6 @@ export const postApi = createApi({
       },
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
-          console.log('Запрос постов и установка totalCount');
           const { meta } = await queryFulfilled;
           const totalCount = meta?.response?.headers.get('X-Total-Count');
           totalCount && dispatch(setTotalCount(+totalCount));

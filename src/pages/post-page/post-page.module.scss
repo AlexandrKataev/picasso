@@ -1,10 +1,28 @@
 .back {
   cursor: pointer;
+
+  background-color: #2b2b2b;
+  color: #474747;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
   border: none;
-  font-size: 2rem;
-  background-color: rgb(24, 24, 24);
-  color: antiquewhite;
+  &:hover {
+    color: #4e4e4e;
+  }
+  &:active {
+    margin-top: 1px;
+  }
 }
+
+.notFound {
+  color: #474747;
+}
+
+.postNumber {
+  color: #474747;
+}
+
 .container {
   display: flex;
   flex-direction: column;
