@@ -10,7 +10,7 @@ export const commentApi = createApi({
     getComments: build.query<Comment[], number>({
       query: (postId) => ({
         url: `/comments?postId=${postId}`,
-        keepUnusedDataFor: 600,
+        keepUnusedDataFor: 600000,
       }),
     }),
   }),

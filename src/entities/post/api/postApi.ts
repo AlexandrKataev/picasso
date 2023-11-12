@@ -14,7 +14,7 @@ export const postApi = createApi({
           _limit: limit,
           _start: start,
         },
-        keepUnusedDataFor: 600,
+        keepUnusedDataFor: 600000,
       }),
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;

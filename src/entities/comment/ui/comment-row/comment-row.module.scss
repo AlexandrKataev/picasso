@@ -1,3 +1,22 @@
 .container {
-	
+  padding: 20px 35px;
+  border-radius: 30px;
+  background-color: var(--color-bg-dark);
+  padding-bottom: 40px;
+  text-align: start;
+}
+
+.email {
+  font-size: 1.4rem;
+  font-weight: 600;
+  // color: var(--color-text-gray);
+  color: var(--color-main);
+  margin-bottom: 10px;
+}
+
+.body {
+  font-size: 1.1rem;
+  &::first-letter {
+    text-transform: capitalize;
+  }
 }

@@ -2,11 +2,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styles from './post-page.module.scss';
 import { useGetPostByIdQuery } from '@entities/post';
 import { ArrowLeftIcon, Loader } from '@shared/ui';
+import { CommentRow, useGetCommentsQuery } from '@entities/comment';
 
 export const PostPage = () => {
   const navigate = useNavigate();
   const postId = useParams().postId || 1;
-  const { data, isFetching, isError, isSuccess } = useGetPostByIdQuery(+postId);
+  const { data: posts, isFetching, isError, isSuccess } = useGetPostByIdQuery(+postId);
+  const { data: comments = [] } = useGetCommentsQuery(+postId);
   return (
     <div className={styles.container}>
       <button className={styles.back} onClick={() => navigate('/')}>
@@ -22,12 +24,15 @@ export const PostPage = () => {
         />
       )}
       {isSuccess && (
-        <div>
-          <h1 className={styles.postNumber}>Post #{data?.id}</h1>
+        <div className={styles.wrapper}>
+          <h1 className={styles.postNumber}>Post #{posts?.id}</h1>
           <div className={styles.post}>
-            <h2 className={styles.title}>{data?.title}</h2>
-            <div className={styles.body}>{data?.body}</div>
-            <div className={styles.body}>{data?.userId}</div>
+            <h2 className={styles.title}>{posts?.title}</h2>
+            <div className={styles.body}>{posts?.body}</div>
+          </div>
+          <h3 className={styles.commentBlockTitle}>Commentaries</h3>
+          <div className={styles.comments}>
+            {comments.length > 0 && comments?.map((el) => <CommentRow {...el} />)}
           </div>
         </div>
       )}
