@@ -11,7 +11,6 @@
     background: var(--color-scroll);
   }
   &::-webkit-scrollbar-thumb {
-    cursor: pointer;
     &:hover {
       background: var(--color-main-hover);
     }
