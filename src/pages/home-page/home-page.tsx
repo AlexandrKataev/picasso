@@ -13,7 +13,6 @@ export const HomePage = () => {
   const [showScrollUp, setShowScrollUp] = useState(false);
 
   const page = useAppSelector((state: RootState) => state.postState.page);
-
   const totalCount = useAppSelector((state: RootState) => state.postState.totalCount);
 
   const { data: posts = [], isFetching } = useGetPostsQuery({ limit: 10, start: page * 10 });
