@@ -1,5 +1,5 @@
 import { Header } from '@widgets/header';
-import './app.scss';
+import './App.scss';
 import { Routing } from './Routing';
 
 export const App = () => {
