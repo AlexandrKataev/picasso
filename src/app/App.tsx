@@ -1,6 +1,6 @@
-import { Header } from '@layouts/header';
-import './App.scss';
-import { Routing } from './Routing';
+import { Header } from '@widgets/header';
+import './app.scss';
+import { Routing } from './routing';
 
 export const App = () => {
   return (

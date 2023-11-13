@@ -1,11 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Post } from './types';
 import { BASE_URL } from '@shared/api';
-import { setTotalCount } from '../model/postSlice';
+import { setPosts, setTotalCount } from '../model/postSlice';
 
 export const postApi = createApi({
   reducerPath: 'postApi',
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
+  keepUnusedDataFor: 1000000000,
   endpoints: (build) => ({
     getPosts: build.query<Post[], { limit: number; start: number }>({
       query: ({ limit, start }) => ({
@@ -14,7 +15,6 @@ export const postApi = createApi({
           _limit: limit,
           _start: start,
         },
-        keepUnusedDataFor: 600000,
       }),
       serializeQueryArgs: ({ endpointName }) => {
         return endpointName;

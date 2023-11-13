@@ -18,7 +18,7 @@ export const PostRow = ({ id, title, body, isItemLoaded, setShowUp, showUp }: Po
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
-  const { ref, inView } = useInView({
+  const { ref: loaderRef, inView: inViewLoader } = useInView({
     threshold: 0.5,
   });
 
@@ -27,8 +27,8 @@ export const PostRow = ({ id, title, body, isItemLoaded, setShowUp, showUp }: Po
   });
 
   useEffect(() => {
-    inView && dispatch(nextPage());
-  }, [inView]);
+    inViewLoader && dispatch(nextPage());
+  }, [inViewLoader]);
 
   useEffect(() => {
     id === 1 && !firstElementInView && showUp === false && setShowUp(true);
@@ -38,7 +38,7 @@ export const PostRow = ({ id, title, body, isItemLoaded, setShowUp, showUp }: Po
   return (
     <div className={styles.container}>
       {!isItemLoaded && (
-        <div ref={ref} className={styles.loader}>
+        <div ref={loaderRef} className={styles.loader}>
           <Loader />
         </div>
       )}

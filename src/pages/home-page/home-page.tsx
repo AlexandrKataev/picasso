@@ -1,7 +1,8 @@
-import { useRef, useState } from 'react';
 import styles from './home-page.module.scss';
 
+import { useRef, useState } from 'react';
 import { useVirtualizer } from '@tanstack/react-virtual';
+
 import { RootState, useAppSelector } from '@app/store/store';
 import { PostRow, useGetPostsQuery } from '@entities/post';
 import { Loader, ScrollUpButton } from '@shared/ui';
@@ -12,6 +13,7 @@ export const HomePage = () => {
   const [showScrollUp, setShowScrollUp] = useState(false);
 
   const page = useAppSelector((state: RootState) => state.postState.page);
+
   const totalCount = useAppSelector((state: RootState) => state.postState.totalCount);
 
   const { data: posts = [], isFetching } = useGetPostsQuery({ limit: 10, start: page * 10 });

@@ -1,11 +1,13 @@
-import { useParams } from 'react-router-dom';
 import styles from './post-page.module.scss';
+
+import { useParams } from 'react-router-dom';
+
 import { useGetPostByIdQuery } from '@entities/post';
-import { Loader } from '@shared/ui';
 import { CommentRow, useGetCommentsQuery } from '@entities/comment';
+import { Loader } from '@shared/ui';
 
 export const PostPage = () => {
-  const postId = useParams().postId || 1;
+  const postId = useParams().postId || -1;
   const { data: posts, isFetching, isError, isSuccess } = useGetPostByIdQuery(+postId);
   const { data: comments = [], isFetching: isFetchingComments } = useGetCommentsQuery(+postId);
   return (
