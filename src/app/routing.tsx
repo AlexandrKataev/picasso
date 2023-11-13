@@ -6,6 +6,7 @@ export const Routing = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/posts/:postId" element={<PostPage />} />
+
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );

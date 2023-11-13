@@ -6,6 +6,7 @@ export const App = () => {
   return (
     <>
       <Header />
+
       <main>
         <Routing />
       </main>
