@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Post } from './types';
 import { BASE_URL } from '@shared/api';
-import { setPosts, setTotalCount } from '../model/postSlice';
+import { setTotalCount } from '../model/postSlice';
 
 export const postApi = createApi({
   reducerPath: 'postApi',
